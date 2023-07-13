@@ -1,8 +1,142 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Delicious+Handrawn&family=Poppins:wght@400;500;700;800&family=Quicksand:wght@400;500;600&family=Righteous&family=Sedgwick+Ave+Display&family=Ubuntu:wght@500;700&display=swap');
 
+:root{
+  --blue:#14213d;
+  --orange:#fca311;
+  --gray:#f1f1f1;
+  --blue-hover:#345499;
+  --orange-hover:#ed6300;
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+
+
+.navbar{
+  display: flex;
+  justify-content: center;
+  background-color: var(--blue);
+  padding: 10px 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 10px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.navbar .active{
+  color: #fff;
+  background-color: var(--orange);
+  transform: scale(1.05);
+}
+
+.home-page{
+  margin: 20px auto;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.route-desc{
+  margin-top: 20px;
+  padding: 50px;
+  border: 2px solid black;
+}
+
+/* Waves */
+.custom-shape-divider-bottom-1689251442 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1689251442 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 84px;
+}
+
+.custom-shape-divider-bottom-1689251442 .shape-fill {
+  fill: #373737;
+}
+
+.user-page{
+  max-width: 800px;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+}
+.user-page table{
+  border: 2px solid black;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+th, td{
+  border: 2px solid black;
+  padding: 5px 10px;
+}
+.user-page button{
+  padding: 5px 10px;
+  width: 70px;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button.edit{
+  background-color:var(--blue);
+}
+button.delete{
+  background-color:var(--orange);
+}
+
+button.edit:hover{
+  background-color:var(--blue-hover);
+}
+button.delete:hover{
+  background-color:var(--orange-hover);
+}
+
+.add-user form {
+  margin: 50px auto;
+  max-width: 300px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray);
+  border-radius: 20px;
+}
+.add-user form input{
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+input[type="submit"]{
+  color: #fff;
+  border-radius: 10px;
+  background-color: var(--blue);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+input[type="submit"]:hover{
+  transform: scale(1.05);
+  background-color: var(--blue-hover);
 }
