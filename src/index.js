@@ -8,7 +8,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>
         <App />
-        <ToastContainer/>
+        <ToastContainer
+            className="toast-position"
+            bodyClassName="toastBody"
+        />
     </>
 );
 

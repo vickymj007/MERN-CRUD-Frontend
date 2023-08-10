@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { avatar } from '../avatar/avatar'
+import {BsFillPeopleFill, BsFillTelephoneFill} from 'react-icons/bs'
 
 function ShowUser() {
     const [user,setUser]= useState(null)
@@ -16,6 +18,7 @@ function ShowUser() {
 
     const handleDelete =(id)=>{
         axios.delete(`https://crud-app-yfc0.onrender.com/api/users/${id}`)
+        // axios.delete(`http://localhost:9000/api/users/${id}`)
         .then(res =>{
             toast.success("Deleted User")
         })
@@ -28,27 +31,25 @@ function ShowUser() {
 
   return (
     <div className='user-page'>
-        {!user? (<p>Loading...</p>) : 
-        (<table>
-            <thead>
-               <tr>
-                   <th>Name</th>
-                   <th>Email</th>
-                   <th>Edit</th>
-                   <th>Delete</th>
-               </tr>
-            </thead>
-            <tbody>
-               {user.map(user=>(
-                    <tr key={user._id}>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                        <td><button className='edit' onClick={handleEdit}>Edit</button></td>
-                        <td><button className='delete' onClick={()=>handleDelete(user._id)}>Delete</button></td>
-                    </tr>
-                ))}
-            </tbody>
-       </table>)}
+        {!user? (<div className='loader'></div>) : 
+        (<div className='contact-list'>
+            {user.map(contact=>(
+                <div className='contact-card' key={contact._id}>
+                    <div>
+                        <img src={avatar[contact.avatar_id]} alt='Avatar'/>
+                    </div>
+                    <div>
+                        <h3>{contact.name}</h3>
+                        <h5><span><BsFillTelephoneFill/></span> {contact.contact_number}</h5>
+                        <p><span><BsFillPeopleFill/></span> {contact.relation}</p>
+                        <div>
+                            <button onClick={handleEdit}className='edit'>Edit</button>
+                            <button onClick={()=>handleDelete(contact._id)} className='delete'>Delete</button>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>)}
     </div>
   )
 }
