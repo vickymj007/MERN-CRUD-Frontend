@@ -5,8 +5,8 @@ function NotFoundPage() {
     
 
   return (
-    <div>
-      <h1>Page not found</h1>
+    <div className='notfound-page'>
+      <h1>The Page you are looking is not found</h1>
       <Link to='/'>Go back to Home</Link>
     </div>
   )

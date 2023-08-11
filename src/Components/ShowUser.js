@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { avatar } from '../avatar/avatar'
 import {BsFillPeopleFill, BsFillTelephoneFill} from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+import { url } from '../url'
 
 function ShowUser() {
     const [user,setUser]= useState(null)
+    const navigate = useNavigate()
 
     useEffect(()=>{
-        axios.get('https://crud-app-yfc0.onrender.com/api/users')
-        // axios.get('http://localhost:9000/api/users')
+        axios.get(`${url}/users`)
         .then(response =>{
             setUser(response.data)
         })
@@ -17,16 +19,15 @@ function ShowUser() {
     },[user])
 
     const handleDelete =(id)=>{
-        axios.delete(`https://crud-app-yfc0.onrender.com/api/users/${id}`)
-        // axios.delete(`http://localhost:9000/api/users/${id}`)
+        axios.delete(`${url}/users/${id}`)
         .then(res =>{
-            toast.success("Deleted User")
+            toast.success("Deleted Contact")
         })
         .catch(error => toast.error(error.message))
     }
 
-    const handleEdit = ()=>{
-        toast.info("Edit button Clicked")
+    const handleEdit = (id)=>{
+        navigate(`/edit-contact/${id}`)
     }
 
   return (
@@ -43,7 +44,7 @@ function ShowUser() {
                         <h5><span><BsFillTelephoneFill/></span> {contact.contact_number}</h5>
                         <p><span><BsFillPeopleFill/></span> {contact.relation}</p>
                         <div>
-                            <button onClick={handleEdit}className='edit'>Edit</button>
+                            <button onClick={()=>handleEdit(contact._id)}className='edit'>Edit</button>
                             <button onClick={()=>handleDelete(contact._id)} className='delete'>Delete</button>
                         </div>
                     </div>

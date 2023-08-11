@@ -1,9 +1,10 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { avatar } from '../avatar/avatar.js'
 import {AiFillCaretUp,AiFillCaretDown} from 'react-icons/ai'
+import { url } from '../url.js'
 
 function AddUser() {
 
@@ -13,11 +14,14 @@ function AddUser() {
   const [avatar_id,setAvatar_id]= useState("Choose Avatar")
   const [loading,setLoading]= useState(false)
   const [openPopup,setOpenPopup]= useState(false)
+  
   const navigate = useNavigate()
+
+  const popUpRef = useRef(null)
 
   const handleClick = (e,index)=>{
     setAvatar_id(index)
-    setOpenPopup(!openPopup)
+    setOpenPopup(false)
   }
   const handleSubmit = (e)=>{
     e.preventDefault()
@@ -31,14 +35,12 @@ function AddUser() {
       relation,
       avatar_id
     }
-    console.log(newUser);
 
-    axios.post('https://crud-app-yfc0.onrender.com/api/users',newUser)
-    // axios.post('http://localhost:9000/api/users',newUser)
+    axios.post(`${url}/users`,newUser)
     .then(response =>{
-      toast.success("Added new user👍")
+      toast.success("Added new contact👍")
       setLoading(false)
-      navigate('/show-users')
+      navigate('/show-contacts')
     })
     .catch(error => {
       toast.error(error.response.data.message)
@@ -46,10 +48,20 @@ function AddUser() {
     })
   }
 
+  useEffect(()=>{
+    const handleOutsideClick = (e)=>{
+      if(!popUpRef.current.contains(e.target)){
+        setOpenPopup(false)
+      }
+    }
+    document.addEventListener('mousedown',handleOutsideClick)
+    return ()=> document.removeEventListener('mousedown',handleOutsideClick)
+  })
+
   return (
     <div className='add-user'>
       <form onSubmit={handleSubmit}>
-        <h2>Enter user details</h2>
+        <h2>Enter Contact details</h2>
         <label htmlFor='name'>Name</label>
         
         <input
@@ -97,7 +109,7 @@ function AddUser() {
                 }
             </span>
           </button>
-          <div className={openPopup ? "open" : ""}>
+          <div className={openPopup ? "open" : ""} ref={popUpRef}>
           {avatar.map((img,index)=>(
               <div key={index} onClick={(e)=>handleClick(e,index)}>
                   <img src={img} alt="Avatar"/>
@@ -107,8 +119,9 @@ function AddUser() {
           </div>
       </div>
         {loading? <div className='loader'></div>:
-        <input type='submit' value='Add User'/>
+        <input type='submit' value='Add Contact'/>
         }
+        <input type='button' value='Cancel' onClick={()=>navigate('/show-contacts')}/>
       </form>
     </div>
   )

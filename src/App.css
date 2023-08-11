@@ -109,14 +109,15 @@ button.delete:hover{
 .contact-card > div > img {
   cursor: pointer;
   transition: all 0.2s;
+  margin: 10px 0 5px 0;
   width: 80px;
 }
 .contact-card > div > img:hover{
   transform: scale(1.1);
 }
 .contact-card > div:nth-child(1){
-  padding: 8px;
-  margin-top: 5px;
+  background-color: #fff;
+  width: 100%;
 }
 .contact-card > div:nth-child(2){
   padding: 8px;
@@ -135,7 +136,6 @@ button.delete:hover{
   color: var(--blue-hover);
 }
 .contact-card > div:nth-child(2) > h3{
-  /* color: #ed6300; */
   font-weight: 400;
 }
 .add-user form h2{
@@ -166,20 +166,30 @@ button.delete:hover{
   outline: 2px solid rgb(129, 223, 254);
 }
 input[type="submit"],
+input[type="button"],
 .btn{
   color: #fff;
   border-radius: 2px;
   background-color: var(--blue);
   cursor: pointer;
+  border: none !important;
+  outline: none !important;
   transition: all 0.2s;
 }
-
+input[type="button"]{
+  color: black;
+  background-color: var(--orange-hover);
+}
+input[type="button"]:hover{
+  transform: scale(1.05);
+  background-color: var(--orange);
+}
 input[type="submit"]:hover{
   transform: scale(1.05);
   background-color: var(--blue-hover);
 }
 .loader{
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -196,26 +206,34 @@ input[type="submit"]:hover{
   vertical-align: middle;
   display: none;
 }
-
+.home-page img {
+  width: 500px;
+}
+.home-page > h1 {
+  margin-top: 20px;
+  font-weight: 400;
+}
+.home-page > div h2 {
+  border-bottom: 2px solid var(--blue);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
 .home-page > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-page > div > div{
   margin-top: 20px;
   padding: 25px;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
-  background-color: var(--blue-hover);
-  color: #fff;
+  text-align: start;
+}
+.home-page > div > div p {
+  padding: 5px;
 }
 .home-page > div a {
   text-decoration: none;
-  color: var(--orange);
-}
-
-.home-page > div:nth-child(2){
-  border-radius: 16px 0 0 16px;
-  margin-left: 20px;
-}
-.home-page > div:nth-child(3){
-  border-radius: 0 16px 16px 0;
-  margin-right: 20px;
+  color: var(--orange-hover);
 }
 
 .custom-select-container div img {
@@ -256,17 +274,54 @@ input[type="submit"]:hover{
 .custom-select-container > div:nth-child(2).open {
   transform: translateY(0) scale(1);
 }
+.notfound-page {
+  margin-top: 40px;
+  text-align: center;
+}
+.notfound-page h1{
+  font-weight: 400;
+}
+.notfound-page a {
+  text-decoration:none;
+  color: var(--orange-hover);
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #080e1a;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+}
+.footer p {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.footer >div > div {
+  display: flex;
+  justify-content: space-between;
+}
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+.footer a:hover{
+  color: var(--orange-hover);
+}
+
 
 /* Media Queries */
-@media only screen and (max-width:500px) {
-  .navbar span{
-    font-size: 25px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 5px;
+@media only screen and (max-width:800px){
+  .home-page img {
+    display: none;
   }
-  .navbar {
-    justify-content: space-between;
+  .home-page h1 {
+    text-align: center;
+  }
+  .home-page > div > div{
+    text-align: center;
   }
   h1{
     font-size: 18px;
@@ -283,6 +338,21 @@ input[type="submit"]:hover{
   p, label, button, select, input {
     font-size: 12px;
   }
+  .navbar a{
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width:500px) {
+  .navbar span{
+    font-size: 25px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+  }
+  .navbar {
+    justify-content: space-between;
+  }
+ 
   .navbar > div:nth-child(3){
     background-color: var(--blue);
     position: absolute;
