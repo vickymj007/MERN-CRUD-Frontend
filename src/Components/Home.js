@@ -8,7 +8,7 @@ function Home() {
       <h1>Contact Manager App</h1>
       <div>
         <div className='route-desc'>
-          <h2>CRUD App using MERN Stack</h2>
+          <h2>CRUD using MERN Stack</h2>
           <p>Welcome to the Contact manager app where you can create, edit and delete your contact.</p>
           <p>Click the <Link to='/show-contacts'>Contacts</Link> button on the Navbar to show existing contacts.</p>
           <p>You can add new contact by clicking the <Link to='/add-contact'>Add Contact</Link> button on the Nav bar.</p>

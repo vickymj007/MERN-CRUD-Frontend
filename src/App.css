@@ -95,6 +95,7 @@ button.delete:hover{
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
+  margin-bottom: 60px;
 }
 .contact-card{
   width: 200px;
@@ -296,12 +297,14 @@ input[type="submit"]:hover{
   color: #fff;
 }
 .footer p {
+  text-align: center;
   font-size: 12px;
   margin-bottom: 5px;
 }
 .footer >div > div {
   display: flex;
   justify-content: space-between;
+  gap: 15px;
 }
 .footer a {
   text-decoration: none;
